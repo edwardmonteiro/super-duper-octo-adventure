@@ -73,6 +73,18 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 A static, bilingual (English + Portuguese Brazil), Duolingo-style micro-course. The user studies ~15 min/day from classical physics → advanced quantum computing and adds one new day at a time. Future Claude sessions help author and ship each day.
 
+**The user has no prior physics background.** Day 01 starts at the absolute basics (atoms). Don't assume any vocabulary — every new term must be introduced with a concrete example before being used.
+
+### Curriculum arc (rough)
+
+| Phase | Days        | Theme                                                                                     |
+|-------|-------------|-------------------------------------------------------------------------------------------|
+| 1     | 01–10       | Classical foundations: atoms → motion → forces → energy → waves/light → heat → e&m → "the puzzle" |
+| 2     | 11–25       | Quantum weirdness: the quantum → duality → superposition → uncertainty → entanglement     |
+| 3     | 26+         | Quantum computing: bit → qubit → gates → circuits → algorithms (Deutsch, Grover, Shor)    |
+
+The phases are flexible — the user drives pace. Each new day's `BUILD.md` proposes the next day in DRAFT; the user confirms the topic before scaffolding.
+
 ### Stack
 
 - **HTML5 + CSS3 + vanilla JS modules.** No bundler. No framework. No npm.
@@ -101,6 +113,7 @@ python3 -m http.server 8000
 ├── days/
 │   ├── manifest.json       ordered list of days; the shell renders the grid from this
 │   ├── _TEMPLATE/          copy-paste seed for new days
+│   ├── _drafts/            lessons drafted ahead of their phase (not in manifest)
 │   └── dayNN/
 │       ├── index.html      lesson markup, data-i18n keys
 │       ├── style.css       per-day styling (usually `@import` of day01 + overrides)
@@ -171,10 +184,13 @@ When the user says "let's continue" or "ship today's day", the correct first act
 
 ### Journey Log
 
-| Day  | Date       | Topic (en)               | Topic (pt-BR)              | XP | Status   |
-|------|------------|--------------------------|----------------------------|----|----------|
-| 01   | 2026-05-22 | What is a 'quantum'?     | O que é um 'quantum'?      | 10 | Complete |
-| 02   | —          | Superposition (draft)    | Superposição (rascunho)    | —  | Planned  |
+| Day  | Date       | Topic (en)                       | Topic (pt-BR)                  | XP | Status   |
+|------|------------|----------------------------------|--------------------------------|----|----------|
+| 01   | 2026-05-22 | Everything is made of pieces     | Tudo é feito de pedacinhos     | 10 | Complete |
+| 02   | —          | Motion (draft)                   | Movimento (rascunho)           | —  | Planned  |
+
+**Drafts (out of phase, parked in `days/_drafts/`):**
+- `quantum-intro/` — "What is a 'quantum'?" — built early before we realized the user needed a true zero-knowledge entry. Promote to ~day 11 when the curriculum actually reaches the quantum threshold.
 
 ### Verification checklist (before committing a new day)
 

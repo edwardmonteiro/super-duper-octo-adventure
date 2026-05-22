@@ -3,12 +3,12 @@
     {
       "id": "day01",
       "title": {
-        "en": "What is a 'quantum'?",
-        "pt-BR": "O que é um 'quantum'?"
+        "en": "Everything is made of pieces",
+        "pt-BR": "Tudo é feito de pedacinhos"
       },
       "topic": {
-        "en": "Discrete energy",
-        "pt-BR": "Energia discreta"
+        "en": "Atoms & molecules",
+        "pt-BR": "Átomos & moléculas"
       },
       "xp": 10
     }

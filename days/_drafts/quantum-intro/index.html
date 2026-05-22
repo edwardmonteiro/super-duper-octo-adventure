@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Day 01 — What is a 'quantum'?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="lesson">
+    <header class="lesson-head">
+      <span class="day-pill">Day 01</span>
+      <h1 data-i18n="title">What is a 'quantum'?</h1>
+      <p class="topic" data-i18n="topic">Energy comes in discrete packets, not a smooth ramp.</p>
+    </header>
+
+    <section class="visual" aria-hidden="true">
+      <div class="iso-stage">
+        <div class="iso-floor"></div>
+        <div class="ramp"></div>
+        <div class="stair">
+          <div class="step s1"></div>
+          <div class="step s2"></div>
+          <div class="step s3"></div>
+          <div class="step s4"></div>
+        </div>
+      </div>
+      <div class="legend">
+        <span class="legend-item"><i class="dot dot-ramp"></i> <span data-i18n="legend.ramp">Continuous (classical)</span></span>
+        <span class="legend-item"><i class="dot dot-stair"></i> <span data-i18n="legend.stair">Discrete (quantum)</span></span>
+      </div>
+    </section>
+
+    <section class="concept">
+      <p data-i18n="concept.p1"><strong>1900.</strong> Max Planck noticed that energy seems to come in tiny indivisible packets. He called the packet a <em>quantum</em>.</p>
+      <p data-i18n="concept.p2">Think of climbing a staircase instead of a ramp: you can stand on step 1 or step 2, but never at "step 1.4".</p>
+      <p data-i18n="concept.p3">A photon is a quantum of light. A qubit, later, will be a quantum of information.</p>
+    </section>
+
+    <section class="quiz">
+      <article class="q" data-correct="1">
+        <h3 data-i18n="q1.prompt">In quantum mechanics, energy is...</h3>
+        <button class="opt" data-idx="0" data-i18n="q1.a">continuous, like a smooth ramp</button>
+        <button class="opt" data-idx="1" data-i18n="q1.b">in discrete packets</button>
+        <button class="opt" data-idx="2" data-i18n="q1.c">always zero</button>
+      </article>
+
+      <article class="q fill" data-correct="energy" data-correct-pt="energia">
+        <h3 data-i18n="q2.prompt">Fill in the blank: "The 'quantum' in quantum computing comes from the idea that ___ comes in discrete packets."</h3>
+        <div class="fill-row">
+          <input type="text" aria-label="answer" data-i18n-placeholder="q2.placeholder" placeholder="type your answer">
+          <button class="check" data-i18n="q2.check">Check</button>
+        </div>
+      </article>
+
+      <article class="q" data-correct="0">
+        <h3 data-i18n="q3.prompt">True or false: a photon is a quantum of light.</h3>
+        <button class="opt" data-idx="0" data-i18n="q3.true">True</button>
+        <button class="opt" data-idx="1" data-i18n="q3.false">False</button>
+      </article>
+    </section>
+
+    <footer class="lesson-foot">
+      <button class="finish" id="finishBtn" disabled data-i18n="finish">Finish — claim 10 XP</button>
+      <p class="teaser" data-i18n="teaser">Tomorrow: <strong>superposition</strong> — being in two states at once.</p>
+    </footer>
+  </main>
+  <script src="./lesson.js"></script>
+</body>
+</html>
