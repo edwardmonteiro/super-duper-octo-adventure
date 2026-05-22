@@ -1,0 +1,38 @@
+{
+  "en": {
+    "title": "TITLE",
+    "topic": "One-line topic.",
+    "concept.p1": "Paragraph 1.",
+    "concept.p2": "Paragraph 2.",
+    "q1.prompt": "Question 1",
+    "q1.a": "Option A",
+    "q1.b": "Option B",
+    "q1.c": "Option C",
+    "q2.prompt": "Question 2",
+    "q2.placeholder": "type your answer",
+    "q2.check": "Check",
+    "q3.prompt": "Question 3",
+    "q3.true": "True",
+    "q3.false": "False",
+    "finish": "Finish — claim NN XP",
+    "teaser": "Tomorrow: <strong>next topic</strong>."
+  },
+  "pt-BR": {
+    "title": "TÍTULO",
+    "topic": "Tópico em uma linha.",
+    "concept.p1": "Parágrafo 1.",
+    "concept.p2": "Parágrafo 2.",
+    "q1.prompt": "Pergunta 1",
+    "q1.a": "Opção A",
+    "q1.b": "Opção B",
+    "q1.c": "Opção C",
+    "q2.prompt": "Pergunta 2",
+    "q2.placeholder": "digite sua resposta",
+    "q2.check": "Verificar",
+    "q3.prompt": "Pergunta 3",
+    "q3.true": "Verdadeiro",
+    "q3.false": "Falso",
+    "finish": "Concluir — ganhe NN XP",
+    "teaser": "Amanhã: <strong>próximo tópico</strong>."
+  }
+}

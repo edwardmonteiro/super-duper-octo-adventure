@@ -69,20 +69,123 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 ---
 
-## Repository Status
+## Project: Quantum Journey
 
-This repository is a fresh scaffold. As of this writing it contains only:
+A static, bilingual (English + Portuguese Brazil), Duolingo-style micro-course. The user studies ~15 min/day from classical physics → advanced quantum computing and adds one new day at a time. Future Claude sessions help author and ship each day.
 
-- `README.md` — a single-line description in Portuguese: "Física quantica divertida" ("Fun quantum physics"). Suggests the intended topic/theme but no scope or stack is committed yet.
-- `LICENSE` — Apache License 2.0.
+### Stack
 
-There is **no source code, build system, package manifest, test suite, or CI configuration** yet. Build/test/lint/architecture sections don't apply until code is added — do not invent commands or describe an architecture that does not exist.
+- **HTML5 + CSS3 + vanilla JS modules.** No bundler. No framework. No npm.
+- **Hosting:** GitHub Pages, deploy from `main` at root (`/`). No build step.
+- **i18n:** per-day `strings.json` keyed by `data-i18n` attributes; shell strings live in `assets/shell.js`.
+- **3D visuals:** pure CSS3 isometric (`transform: perspective / rotateX / rotateZ`) for now. Three.js may be added later only on days that genuinely need it (e.g. Bloch sphere). Don't add it preemptively.
+- **State:** `localStorage` under key `quantum-journey:state` — `{xp, streak, completed[], lang, lastVisit}`.
 
-Applying the principles above to this state:
+### Run locally
 
-- **Think before coding:** When asked to add the first code, ask which language/stack the user wants. The physics theme is compatible with many (Python + Jupyter, JavaScript + a visualization lib, etc.) — don't pick silently.
-- **Surgical changes:** Once a stack is scaffolded, **replace this "Repository Status" section** with real build/run/test commands and an architecture overview. Don't leave it claiming the repo is empty after code lands.
+```sh
+python3 -m http.server 8000
+# open http://localhost:8000
+```
+
+`file://` won't work — the shell uses `fetch()` to load `days/manifest.json`.
+
+### Architecture: micro-frontend via iframe shell
+
+```
+/
+├── index.html              shell (sticky header, day grid, modal)
+├── assets/
+│   ├── style.css           shared design tokens + landing styles
+│   └── shell.js            manifest loader, state, lang toggle, modal orchestration
+├── days/
+│   ├── manifest.json       ordered list of days; the shell renders the grid from this
+│   ├── _TEMPLATE/          copy-paste seed for new days
+│   └── dayNN/
+│       ├── index.html      lesson markup, data-i18n keys
+│       ├── style.css       per-day styling (usually `@import` of day01 + overrides)
+│       ├── lesson.js       quiz logic; posts results to parent
+│       ├── strings.json    {en, "pt-BR"} translations
+│       └── BUILD.md        immortality breadcrumb (see below)
+```
+
+**Shell ↔ day contract:**
+- Shell opens `./days/<id>/index.html?lang=<en|pt-BR>` inside a `<dialog>` iframe.
+- Day posts to parent on completion:
+  - `parent.postMessage({type:'lesson:complete', dayId, xp}, '*')`
+  - then `parent.postMessage({type:'lesson:close'}, '*')` to dismiss the modal.
+- Shell updates state (XP, streak, completed) on receipt.
+
+Days are fully self-contained. Editing one day cannot break another. That is the point of the iframe.
+
+### Daily authoring ritual (every new day)
+
+1. `cp -r days/_TEMPLATE days/dayNN`
+2. Set `DAY_ID` and `XP_REWARD` in `lesson.js`.
+3. Translate every visible string into BOTH `en` and `pt-BR` in `strings.json`. No raw English in HTML except placeholders that `data-i18n` overrides at load.
+4. Append a manifest entry to `days/manifest.json`:
+   ```json
+   {
+     "id": "dayNN",
+     "title": { "en": "...", "pt-BR": "..." },
+     "topic": { "en": "...", "pt-BR": "..." },
+     "xp": 10
+   }
+   ```
+5. Write `days/dayNN/BUILD.md` (use the template). Include a DRAFT plan for `dayNN+1`.
+6. Update the **Journey Log** below.
+7. Commit with a clear message; push to the active branch.
+
+### Lesson shape (the 15-min Duolingo unit)
+
+- 1 concept
+- 1 visual (CSS isometric)
+- 3–5 interactive checks (MCQ, true/false, or fill-in)
+- 1 next-day teaser
+- XP reward on completion
+
+Keep concepts tight. Each day should bridge the previous one to the next in a single, named idea.
+
+### Conventions
+
+- Every visible string must exist in both `en` and `pt-BR` in `strings.json`. Hard-coded English in markup is a bug.
+- Quiz attributes:
+  - MCQ / true-false: `<article class="q" data-correct="<idx>">`, buttons with `data-idx`.
+  - Fill-in: `<article class="q fill" data-correct="<en>" data-correct-pt="<pt-BR>">`.
+- Design tokens live in `/assets/style.css` `:root`. Day stylesheets reuse them — don't redefine palette colors per day.
+- Modern icons: inline SVG only. No icon-font dependency.
+- No third-party JS unless a day genuinely requires it.
+
+### Immortality system
+
+Memory does not survive across sessions. To work around that:
+- **Root `CLAUDE.md` (this file)** is the entry point — read first, every session.
+- **`days/dayNN/BUILD.md`** records what was built that day, why, file conventions, and a DRAFT plan for the next day.
+- **Journey Log** below is the index — keep it in sync as days ship.
+
+When the user says "let's continue" or "ship today's day", the correct first action is:
+1. Read this file.
+2. Read the most recent day's `BUILD.md`.
+3. Look at the DRAFT for the next day to find the planned topic.
+4. Confirm the topic with the user (one short sentence) before scaffolding.
+
+### Journey Log
+
+| Day  | Date       | Topic (en)               | Topic (pt-BR)              | XP | Status   |
+|------|------------|--------------------------|----------------------------|----|----------|
+| 01   | 2026-05-22 | What is a 'quantum'?     | O que é um 'quantum'?      | 10 | Complete |
+| 02   | —          | Superposition (draft)    | Superposição (rascunho)    | —  | Planned  |
+
+### Verification checklist (before committing a new day)
+
+- [ ] `python3 -m http.server` + open `localhost:8000` — landing renders.
+- [ ] New day's tile appears in the grid.
+- [ ] Click the tile — modal opens with the lesson.
+- [ ] Toggle EN ↔ PT-BR — every string swaps; no English left in pt-BR mode.
+- [ ] Complete all checks — Finish button activates.
+- [ ] Click Finish — XP increments, streak still correct, tile shows the green completion dot, modal closes.
+- [ ] Reload the page — state persists.
 
 ## Branching
 
-Active documentation branch: `claude/claude-md-docs-pFM4g`. Default branch: `main`.
+Active development branch: `claude/claude-md-docs-pFM4g`. Default branch: `main`.
