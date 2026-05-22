@@ -151,13 +151,31 @@ Days are fully self-contained. Editing one day cannot break another. That is the
 
 ### Lesson shape (the 15-min Duolingo unit)
 
-- 1 concept
-- 1 visual (CSS isometric)
-- 3–5 interactive checks (MCQ, true/false, or fill-in)
-- 1 next-day teaser
-- XP reward on completion
+Every day, in this order:
+
+1. **Concept** — one named idea, 2–4 short paragraphs.
+2. **Visual** — one CSS-isometric or inline-SVG illustration.
+3. **Playground** — one small interactive widget (see below). Required.
+4. **Quiz** — 3–5 checks (MCQ, true/false, or fill-in).
+5. **Teaser** — one line pointing to tomorrow.
+6. **XP** on completion.
 
 Keep concepts tight. Each day should bridge the previous one to the next in a single, named idea.
+
+### Playground (the per-day mini-interactive)
+
+Every day must include a `<section class="playground">` between the visual and the quiz. It contains ONE small interactive element specific to the day's topic — not graded, no XP, just for feel and exploration. Examples:
+
+- Day 01 (atoms): click each atom in the molecule SVG → reveal a fact card.
+- Day 02 (motion, planned): drag a ball along a track → live speedometer.
+- Day 03 (forces, planned): click to push the ball → see velocity change.
+
+Conventions:
+- HTML: a `<section class="playground">` with `.playground-title`, `.playground-hint`, and a `.playground-output` (or any day-specific markup) inside.
+- Strings: every day's `strings.json` has `play.title`, `play.hint`, `play.intro` keys (both languages).
+- JS: each `lesson.js` has a `setupPlayground(dict)` function called from `applyStrings()`.
+- CSS: the shared playground styles live in `days/day01/style.css` (which every other day imports). Don't redefine them.
+- Reuse the day's main visual where possible — making the existing illustration interactive feels native, while a separate widget feels bolted-on.
 
 ### Conventions
 

@@ -38,9 +38,9 @@
         <g filter="url(#softshadow)">
           <line x1="90" y1="60" x2="210" y2="110" stroke="#5a5f88" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
           <line x1="330" y1="60" x2="210" y2="110" stroke="#5a5f88" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
-          <circle cx="210" cy="110" r="55" fill="url(#oxy)"/>
-          <circle cx="90" cy="60" r="28" fill="url(#hydro)"/>
-          <circle cx="330" cy="60" r="28" fill="url(#hydro)"/>
+          <circle class="atom-clickable" data-atom="O" tabindex="0" role="button" aria-label="Oxygen" cx="210" cy="110" r="55" fill="url(#oxy)"/>
+          <circle class="atom-clickable" data-atom="H" tabindex="0" role="button" aria-label="Hydrogen" cx="90" cy="60" r="28" fill="url(#hydro)"/>
+          <circle class="atom-clickable" data-atom="H" tabindex="0" role="button" aria-label="Hydrogen" cx="330" cy="60" r="28" fill="url(#hydro)"/>
         </g>
         <text x="210" y="118" text-anchor="middle" fill="rgba(20,16,40,0.65)" font-family="Inter,sans-serif" font-size="24" font-weight="700">O</text>
         <text x="90" y="66" text-anchor="middle" fill="rgba(20,16,40,0.65)" font-family="Inter,sans-serif" font-size="15" font-weight="700">H</text>
@@ -58,6 +58,12 @@
       <p data-i18n="concept.p2">Atoms are so small that about <strong>5 million</strong> of them fit across the width of a single hair.</p>
       <p data-i18n="concept.p3">And here's the magic: there are only about <strong>100 different kinds</strong> of atoms — we call them the <em>elements</em>. Every star, every cake, every cell in your body is built from these same ~100 pieces, combined in different ways.</p>
       <p data-i18n="concept.p4">When atoms "hold hands", they form a <em>molecule</em>. Two hydrogens plus one oxygen = one molecule of water. That's the picture above.</p>
+    </section>
+
+    <section class="playground">
+      <h2 class="playground-title" data-i18n="play.title">Try it — tap an atom</h2>
+      <p class="playground-hint" data-i18n="play.hint">Click on O or H in the picture above to learn what each atom is.</p>
+      <div class="playground-output" id="atomInfo" aria-live="polite" data-i18n="play.intro">Tap an atom to see what it is.</div>
     </section>
 
     <section class="quiz">

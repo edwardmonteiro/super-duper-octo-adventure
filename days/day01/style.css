@@ -125,9 +125,14 @@ html, body {
   color: #f9c3c3;
 }
 
-.fill-row { display: flex; gap: 10px; }
+.fill-row {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
 .q.fill input {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
   background: var(--bg);
   color: var(--fg);
   border: 1px solid var(--border);
@@ -138,16 +143,79 @@ html, body {
 }
 .q.fill input:focus { outline: none; border-color: var(--accent-soft); }
 .q.fill .check {
+  flex: 0 0 auto;
   background: var(--accent);
   color: white;
   border: 0;
-  padding: 0 18px;
+  padding: 12px 20px;
   border-radius: 10px;
   cursor: pointer;
-  font: 600 13px/1 var(--font);
+  font: 600 13px/1.3 var(--font);
+  white-space: nowrap;
+  transition: background 140ms, transform 80ms;
 }
+.q.fill .check:hover { background: #8b6dff; }
+.q.fill .check:active { transform: scale(0.98); }
 .q.fill.solved input { border-color: var(--success); color: #b9f3cd; }
 .q.fill.solved .check { background: var(--success); cursor: default; }
+@media (max-width: 460px) {
+  .fill-row { flex-direction: column; }
+  .q.fill .check { width: 100%; }
+}
+
+/* Playground (per-day mini interactive element) */
+.playground {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-top: 28px;
+}
+.playground-title {
+  font: 600 11px/1 var(--font);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent-soft);
+  margin: 0 0 6px;
+}
+.playground-hint {
+  color: var(--fg-dim);
+  font-size: 13.5px;
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+.playground-output {
+  background: var(--bg);
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--fg-dim);
+  font-style: italic;
+  transition: border-color 200ms, color 200ms;
+}
+.playground-output.has-content {
+  color: var(--fg);
+  font-style: normal;
+  border-style: solid;
+  border-color: var(--accent-soft);
+}
+
+/* SVG atom interactivity */
+.atom-clickable {
+  cursor: pointer;
+  transition: transform 200ms ease;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.atom-clickable:hover { transform: scale(1.07); }
+.atom-clickable.pulse { transform: scale(1.14); }
+.atom-clickable:focus { outline: none; }
+.atom-clickable:focus-visible { filter: drop-shadow(0 0 6px var(--accent-soft)); }
 
 /* Footer */
 .lesson-foot { text-align: center; margin-top: 36px; }

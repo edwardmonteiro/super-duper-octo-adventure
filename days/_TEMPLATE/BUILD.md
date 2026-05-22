@@ -15,6 +15,9 @@
 2. METAPHOR / VISUAL
 3. CONNECTION TO QUANTUM COMPUTING
 
+## Playground (required)
+Every day has a `<section class="playground">` between the visual and the quiz. One small interactive widget specific to this day's topic — not graded, no XP, just play. Whenever possible, reuse the day's main visual (e.g. day01 makes the atoms in the molecule clickable). Wire it up in `setupPlayground(dict)` in `lesson.js`. The shared CSS (`.playground`, `.playground-output`, `.has-content`) is already in `day01/style.css` — don't redefine it.
+
 ## File map
 - `index.html`, `style.css`, `lesson.js`, `strings.json` — same conventions as day01 (see `days/day01/BUILD.md`).
 - `style.css` imports day01's stylesheet by default — only override what you need.

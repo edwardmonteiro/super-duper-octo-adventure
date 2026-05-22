@@ -21,6 +21,27 @@ function applyStrings(strings) {
     const v = dict[el.getAttribute('data-i18n-placeholder')];
     if (v != null) el.placeholder = v;
   }
+  setupPlayground(dict);
+}
+
+function setupPlayground(dict) {
+  const out = document.getElementById('atomInfo');
+  if (!out) return;
+  for (const el of document.querySelectorAll('[data-atom]')) {
+    const reveal = () => {
+      const txt = dict['atom.' + el.dataset.atom];
+      if (txt) {
+        out.textContent = txt;
+        out.classList.add('has-content');
+      }
+      el.classList.add('pulse');
+      setTimeout(() => el.classList.remove('pulse'), 220);
+    };
+    el.addEventListener('click', reveal);
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); reveal(); }
+    });
+  }
 }
 
 function markSolved(i) {

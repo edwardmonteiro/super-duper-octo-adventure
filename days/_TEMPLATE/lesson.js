@@ -21,6 +21,16 @@ function applyStrings(strings) {
     const v = dict[el.getAttribute('data-i18n-placeholder')];
     if (v != null) el.placeholder = v;
   }
+  setupPlayground(dict);
+}
+
+// Wire up the day's playground interactivity here.
+// Pattern: read strings via `dict[key]`, update `#playgroundOutput`,
+// add `.has-content` class once the user has interacted.
+function setupPlayground(dict) {
+  // TODO: implement day-specific interactivity.
+  // Example (day01 atoms): for each [data-atom] element in the visual,
+  //   on click/keypress, set out.textContent = dict['atom.' + el.dataset.atom];
 }
 
 function markSolved(i) {
