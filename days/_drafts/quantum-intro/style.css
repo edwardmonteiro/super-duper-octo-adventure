@@ -11,8 +11,6 @@
   --border: #1e2347;
   --radius: 14px;
   --font: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --atom-o: #ff6b6b;
-  --atom-h: #e8eaf6;
 }
 
 * { box-sizing: border-box; }
@@ -27,7 +25,11 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-.lesson { padding: 44px 36px 36px; max-width: 720px; margin: 0 auto; }
+.lesson {
+  padding: 44px 36px 36px;
+  max-width: 720px;
+  margin: 0 auto;
+}
 
 /* Header */
 .lesson-head { margin-bottom: 22px; }
@@ -41,51 +43,86 @@ html, body {
   border-radius: 999px;
   text-transform: uppercase;
 }
-.lesson-head h1 { font: 700 28px/1.15 var(--font); letter-spacing: -0.02em; margin: 12px 0 6px; }
-.lesson-head .topic { color: var(--fg-dim); margin: 0; font-size: 15px; line-height: 1.5; }
+.lesson-head h1 {
+  font: 700 28px/1.15 var(--font);
+  letter-spacing: -0.02em;
+  margin: 12px 0 6px;
+}
+.lesson-head .topic { color: var(--fg-dim); margin: 0; font-size: 15px; }
 
-/* Molecule visual */
+/* Isometric visual */
 .visual {
   background: linear-gradient(160deg, #151a3a, #0c0f24);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 28px 28px 20px;
+  padding: 32px 28px 18px;
   margin: 24px 0 32px;
-  text-align: center;
 }
-.molecule {
-  width: 100%;
-  max-width: 420px;
-  height: auto;
-  transform: perspective(900px) rotateX(18deg) rotateZ(-6deg);
-  transform-origin: 50% 70%;
-  filter: drop-shadow(0 12px 28px rgba(124, 92, 255, 0.18));
+.iso-stage {
+  position: relative;
+  height: 200px;
+  transform: perspective(900px) rotateX(48deg) rotateZ(-30deg);
+  transform-origin: 50% 100%;
+  transform-style: preserve-3d;
+  margin: 0 auto;
+  width: 80%;
 }
+.iso-floor {
+  position: absolute;
+  inset: auto 0 -10px 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+.ramp {
+  position: absolute;
+  left: 4%;
+  bottom: 0;
+  width: 38%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--accent-soft), transparent);
+  transform-origin: left bottom;
+  transform: rotateZ(-28deg);
+  border-radius: 6px;
+  box-shadow: 0 0 24px var(--accent-soft);
+}
+.stair {
+  position: absolute;
+  right: 4%;
+  bottom: 0;
+  width: 42%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+}
+.step {
+  flex: 1;
+  background: linear-gradient(180deg, var(--accent), #4a32cc);
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 4px 14px rgba(124, 92, 255, 0.45);
+}
+.step.s1 { height: 22%; }
+.step.s2 { height: 46%; }
+.step.s3 { height: 70%; }
+.step.s4 { height: 94%; }
+
 .legend {
   display: flex;
   gap: 22px;
   justify-content: center;
-  margin-top: 18px;
-  font-size: 12.5px;
+  margin-top: 16px;
+  font-size: 12px;
   color: var(--fg-dim);
   flex-wrap: wrap;
 }
 .legend-item { display: inline-flex; align-items: center; gap: 6px; }
-.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
-.dot-o { background: var(--atom-o); }
-.dot-h { background: var(--atom-h); }
-.legend-caption {
-  text-align: center;
-  color: var(--fg-dim);
-  margin: 6px 0 0;
-  font-size: 12.5px;
-  font-style: italic;
-}
+.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; }
+.dot-ramp { background: var(--accent-soft); }
+.dot-stair { background: var(--accent); }
 
-/* Concept */
+/* Concept text */
 .concept p { line-height: 1.7; font-size: 15.5px; margin: 0 0 14px; }
 .concept em { color: var(--accent-soft); font-style: normal; font-weight: 600; }
-.concept strong { color: var(--fg); font-weight: 600; }
 
 /* Quiz */
 .quiz { display: flex; flex-direction: column; gap: 18px; margin-top: 28px; }
@@ -167,11 +204,18 @@ html, body {
   cursor: not-allowed;
 }
 .finish:not(:disabled):hover { transform: translateY(-2px); }
-.finish.done { background: var(--success); color: #0a1c10; }
-.teaser { color: var(--fg-dim); margin: 18px 0 0; font-size: 13.5px; }
+.finish.done {
+  background: var(--success);
+  color: #0a1c10;
+}
+.teaser {
+  color: var(--fg-dim);
+  margin: 18px 0 0;
+  font-size: 13.5px;
+}
 .teaser strong { color: var(--accent-soft); font-weight: 600; }
 
 @media (max-width: 560px) {
   .lesson { padding: 28px 18px 28px; }
-  .molecule { max-width: 100%; }
+  .iso-stage { width: 100%; height: 180px; }
 }

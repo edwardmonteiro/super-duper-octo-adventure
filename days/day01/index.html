@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Day 01 — What is a 'quantum'?</title>
+  <title>Day 01 — Everything is made of pieces</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -11,59 +11,81 @@
   <main class="lesson">
     <header class="lesson-head">
       <span class="day-pill">Day 01</span>
-      <h1 data-i18n="title">What is a 'quantum'?</h1>
-      <p class="topic" data-i18n="topic">Energy comes in discrete packets, not a smooth ramp.</p>
+      <h1 data-i18n="title">Everything is made of pieces.</h1>
+      <p class="topic" data-i18n="topic">Everything you can see, touch, or smell is built from tiny pieces called atoms.</p>
     </header>
 
     <section class="visual" aria-hidden="true">
-      <div class="iso-stage">
-        <div class="iso-floor"></div>
-        <div class="ramp"></div>
-        <div class="stair">
-          <div class="step s1"></div>
-          <div class="step s2"></div>
-          <div class="step s3"></div>
-          <div class="step s4"></div>
-        </div>
-      </div>
+      <svg class="molecule" viewBox="0 0 420 200" role="img" aria-label="A water molecule">
+        <defs>
+          <radialGradient id="oxy" cx="35%" cy="30%">
+            <stop offset="0%" stop-color="#ffb3b3"/>
+            <stop offset="55%" stop-color="#ff6b6b"/>
+            <stop offset="100%" stop-color="#a23333"/>
+          </radialGradient>
+          <radialGradient id="hydro" cx="35%" cy="30%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="60%" stop-color="#e8eaf6"/>
+            <stop offset="100%" stop-color="#767aa0"/>
+          </radialGradient>
+          <filter id="softshadow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+            <feOffset dx="0" dy="6" result="off"/>
+            <feComponentTransfer><feFuncA type="linear" slope="0.45"/></feComponentTransfer>
+            <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <g filter="url(#softshadow)">
+          <line x1="90" y1="60" x2="210" y2="110" stroke="#5a5f88" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+          <line x1="330" y1="60" x2="210" y2="110" stroke="#5a5f88" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+          <circle cx="210" cy="110" r="55" fill="url(#oxy)"/>
+          <circle cx="90" cy="60" r="28" fill="url(#hydro)"/>
+          <circle cx="330" cy="60" r="28" fill="url(#hydro)"/>
+        </g>
+        <text x="210" y="118" text-anchor="middle" fill="rgba(20,16,40,0.65)" font-family="Inter,sans-serif" font-size="24" font-weight="700">O</text>
+        <text x="90" y="66" text-anchor="middle" fill="rgba(20,16,40,0.65)" font-family="Inter,sans-serif" font-size="15" font-weight="700">H</text>
+        <text x="330" y="66" text-anchor="middle" fill="rgba(20,16,40,0.65)" font-family="Inter,sans-serif" font-size="15" font-weight="700">H</text>
+      </svg>
       <div class="legend">
-        <span class="legend-item"><i class="dot dot-ramp"></i> <span data-i18n="legend.ramp">Continuous (classical)</span></span>
-        <span class="legend-item"><i class="dot dot-stair"></i> <span data-i18n="legend.stair">Discrete (quantum)</span></span>
+        <span class="legend-item"><i class="dot dot-o"></i> <span data-i18n="legend.o">Oxygen (O)</span></span>
+        <span class="legend-item"><i class="dot dot-h"></i> <span data-i18n="legend.h">Hydrogen (H)</span></span>
       </div>
+      <p class="legend-caption" data-i18n="legend.caption">A water molecule — three atoms holding hands.</p>
     </section>
 
     <section class="concept">
-      <p data-i18n="concept.p1"><strong>1900.</strong> Max Planck noticed that energy seems to come in tiny indivisible packets. He called the packet a <em>quantum</em>.</p>
-      <p data-i18n="concept.p2">Think of climbing a staircase instead of a ramp: you can stand on step 1 or step 2, but never at "step 1.4".</p>
-      <p data-i18n="concept.p3">A photon is a quantum of light. A qubit, later, will be a quantum of information.</p>
+      <p data-i18n="concept.p1">Pick up anything around you — a cup, a leaf, the air in front of your face. Zoom in. Then zoom in more, way past what your eyes can see, past what a microscope can show. Eventually you find <em>atoms</em>: tiny pieces from which everything is built.</p>
+      <p data-i18n="concept.p2">Atoms are so small that about <strong>5 million</strong> of them fit across the width of a single hair.</p>
+      <p data-i18n="concept.p3">And here's the magic: there are only about <strong>100 different kinds</strong> of atoms — we call them the <em>elements</em>. Every star, every cake, every cell in your body is built from these same ~100 pieces, combined in different ways.</p>
+      <p data-i18n="concept.p4">When atoms "hold hands", they form a <em>molecule</em>. Two hydrogens plus one oxygen = one molecule of water. That's the picture above.</p>
     </section>
 
     <section class="quiz">
       <article class="q" data-correct="1">
-        <h3 data-i18n="q1.prompt">In quantum mechanics, energy is...</h3>
-        <button class="opt" data-idx="0" data-i18n="q1.a">continuous, like a smooth ramp</button>
-        <button class="opt" data-idx="1" data-i18n="q1.b">in discrete packets</button>
-        <button class="opt" data-idx="2" data-i18n="q1.c">always zero</button>
+        <h3 data-i18n="q1.prompt">Everything you can see is made of...</h3>
+        <button class="opt" data-idx="0" data-i18n="q1.a">only energy, nothing physical</button>
+        <button class="opt" data-idx="1" data-i18n="q1.b">tiny pieces called atoms</button>
+        <button class="opt" data-idx="2" data-i18n="q1.c">an illusion — nothing is really there</button>
       </article>
 
-      <article class="q fill" data-correct="energy" data-correct-pt="energia">
-        <h3 data-i18n="q2.prompt">Fill in the blank: "The 'quantum' in quantum computing comes from the idea that ___ comes in discrete packets."</h3>
+      <article class="q fill" data-correct="molecule" data-correct-pt="molécula">
+        <h3 data-i18n="q2.prompt">Fill in the blank: "When atoms join together, they form a ___."</h3>
         <div class="fill-row">
           <input type="text" aria-label="answer" data-i18n-placeholder="q2.placeholder" placeholder="type your answer">
           <button class="check" data-i18n="q2.check">Check</button>
         </div>
       </article>
 
-      <article class="q" data-correct="0">
-        <h3 data-i18n="q3.prompt">True or false: a photon is a quantum of light.</h3>
+      <article class="q" data-correct="1">
+        <h3 data-i18n="q3.prompt">True or false: there are millions of different kinds of atoms.</h3>
         <button class="opt" data-idx="0" data-i18n="q3.true">True</button>
-        <button class="opt" data-idx="1" data-i18n="q3.false">False</button>
+        <button class="opt" data-idx="1" data-i18n="q3.false">False — there are only about 100</button>
       </article>
     </section>
 
     <footer class="lesson-foot">
       <button class="finish" id="finishBtn" disabled data-i18n="finish">Finish — claim 10 XP</button>
-      <p class="teaser" data-i18n="teaser">Tomorrow: <strong>superposition</strong> — being in two states at once.</p>
+      <p class="teaser" data-i18n="teaser">Tomorrow: <strong>motion</strong> — how all those tiny pieces move.</p>
     </footer>
   </main>
   <script src="./lesson.js"></script>

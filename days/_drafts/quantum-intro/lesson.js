@@ -25,7 +25,7 @@ function applyStrings(strings) {
 
 function markSolved(i) {
   solved.add(i);
-  if (solved.size >= document.querySelectorAll('.q').length) {
+  if (solved.size >= 3) {
     document.getElementById('finishBtn').disabled = false;
   }
 }
