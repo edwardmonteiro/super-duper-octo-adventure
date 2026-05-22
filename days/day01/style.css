@@ -240,6 +240,16 @@ html, body {
 .teaser strong { color: var(--accent-soft); font-weight: 600; }
 
 @media (max-width: 560px) {
-  .lesson { padding: 28px 18px 28px; }
+  .lesson { padding: 24px 16px 36px; }
+  .lesson-head h1 { font-size: 24px; }
   .molecule { max-width: 100%; }
+  .concept p { font-size: 15px; }
+  /* iOS auto-zooms inputs whose font-size < 16px; keep it at 16px on mobile */
+  .q.fill input { font-size: 16px; }
+  .q.fill .check { font-size: 14px; }
+  .q h3 { font-size: 14.5px; }
+  .opt { font-size: 14px; }
+}
+@media (max-width: 380px) {
+  .legend { gap: 14px; font-size: 12px; }
 }
