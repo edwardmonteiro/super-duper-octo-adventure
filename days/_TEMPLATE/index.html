@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Day NN — TITLE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="lesson">
+    <header class="lesson-head">
+      <span class="day-pill">Day NN</span>
+      <h1 data-i18n="title">TITLE</h1>
+      <p class="topic" data-i18n="topic">One-line topic.</p>
+    </header>
+
+    <section class="visual" aria-hidden="true">
+      <!-- isometric or CSS visual goes here -->
+    </section>
+
+    <section class="concept">
+      <p data-i18n="concept.p1">Paragraph 1.</p>
+      <p data-i18n="concept.p2">Paragraph 2.</p>
+    </section>
+
+    <section class="quiz">
+      <article class="q" data-correct="0">
+        <h3 data-i18n="q1.prompt">Question 1</h3>
+        <button class="opt" data-idx="0" data-i18n="q1.a">Option A</button>
+        <button class="opt" data-idx="1" data-i18n="q1.b">Option B</button>
+        <button class="opt" data-idx="2" data-i18n="q1.c">Option C</button>
+      </article>
+
+      <article class="q fill" data-correct="answer" data-correct-pt="resposta">
+        <h3 data-i18n="q2.prompt">Question 2 (fill in)</h3>
+        <div class="fill-row">
+          <input type="text" aria-label="answer" data-i18n-placeholder="q2.placeholder" placeholder="type your answer">
+          <button class="check" data-i18n="q2.check">Check</button>
+        </div>
+      </article>
+
+      <article class="q" data-correct="0">
+        <h3 data-i18n="q3.prompt">Question 3 (true/false)</h3>
+        <button class="opt" data-idx="0" data-i18n="q3.true">True</button>
+        <button class="opt" data-idx="1" data-i18n="q3.false">False</button>
+      </article>
+    </section>
+
+    <footer class="lesson-foot">
+      <button class="finish" id="finishBtn" disabled data-i18n="finish">Finish — claim NN XP</button>
+      <p class="teaser" data-i18n="teaser">Tomorrow: <strong>next topic</strong>.</p>
+    </footer>
+  </main>
+  <script src="./lesson.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "days": [
+    {
+      "id": "day01",
+      "title": {
+        "en": "What is a 'quantum'?",
+        "pt-BR": "O que é um 'quantum'?"
+      },
+      "topic": {
+        "en": "Discrete energy",
+        "pt-BR": "Energia discreta"
+      },
+      "xp": 10
+    }
+  ]
+}
